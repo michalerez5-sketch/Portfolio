@@ -487,3 +487,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* the footer animates its own parts; skip the generic block reveal (its rounded clip ate the divider ends) */
 .js .contact[data-reveal], .js .contact[data-reveal].is-in { opacity: 1; transform: none; clip-path: none; }
 .case .contact { border-top: 0; margin-top: 0; padding-top: 40px; }
+/* very narrow phones (under 340px): footer details stack in one column */
+@media (max-width: 340px) {
+  .contact__meta { grid-template-columns: 1fr; }
+  .contact__meta > :nth-child(even) { justify-self: start; }
+  .nav__item { font-size: 12px; }
+}
