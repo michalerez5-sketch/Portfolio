@@ -179,6 +179,20 @@
     });
   }
 
+  /* ---------- Nav: highlight Work / Contact for the section in view ---------- */
+  const spyLinks = [...document.querySelectorAll('[data-spy]')];
+  const spyTargets = spyLinks.map(a => document.getElementById(a.dataset.spy)).filter(Boolean);
+  if (spyTargets.length && 'IntersectionObserver' in window) {
+    const visible = new Set();
+    const sio = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id));
+      // contact wins when both are on screen (it sits at the bottom)
+      const on = visible.has('contact') ? 'contact' : (visible.has('work') ? 'work' : null);
+      spyLinks.forEach(a => a.classList.toggle('is-active', a.dataset.spy === on));
+    }, { rootMargin: '-35% 0px -35% 0px' });
+    spyTargets.forEach(t => sio.observe(t));
+  }
+
   /* ---------- Back to top ---------- */
   document.querySelectorAll('[data-top]').forEach(a => a.addEventListener('click', e => {
     e.preventDefault(); window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });

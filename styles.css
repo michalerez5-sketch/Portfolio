@@ -493,3 +493,26 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .contact__meta > :nth-child(even) { justify-self: start; }
   .nav__item { font-size: 12px; }
 }
+
+/* ---------- Nav links: Work / Contact ---------- */
+/* four items spread evenly from the logo to "2026 / PORTFOLIO" */
+.nav { display: flex; justify-content: space-between; }
+.nav__links { display: contents; }
+.nav__link { color: var(--ink); line-height: 1.2; }
+.nav__link.is-active::after { transform: scaleX(1); transform-origin: left; }
+.nav__link:active { opacity: .6; }
+.nav__link:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; border-radius: 2px; }
+#contact { scroll-margin-top: 40px; }
+@media (max-width: 720px) {
+  .nav__right .yr { display: none; }
+}
+@media (max-width: 520px) {
+  .nav__right { display: none; }
+}
+/* very narrow phones (under 340px): footer details stack in one column */
+@media (max-width: 340px) {
+  .contact__meta { grid-template-columns: 1fr; }
+  .contact__meta > :nth-child(even) { justify-self: start; }
+  .nav__item { font-size: 12px; }
+}
+
